@@ -2,13 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CurrencyService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Currency;
+use Services\Facades\OrderServiceFacade;
 
 class CurrencyController extends Controller
 {
+    public $currencies;
+    public $currencyService;
+
+    public function __construct()
+    {
+        $this->currencyService = new CurrencyService();
+        $this->currencies = $this->currencyService->getCurrencies();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +26,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        $currencies = Currency::all();
-
-        return view('currency', ['currencies' => $currencies]);
+        return view('currency', ['currencies' => $this->currencies]);
     }
 
     /**
@@ -39,8 +47,8 @@ class CurrencyController extends Controller
      */
     public function store(Request $request)
     {
-        // rename to order
-        var_dump($request);
+        $message = OrderServiceFacade::createOrder();
+        return view('currency', ['message' => $message, 'currencies' => $this->currencies]);
     }
 
     /**

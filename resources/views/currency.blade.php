@@ -2,18 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Buy Foreign Currency</title>
+    <title>Mukuru Foreign Currencies</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
 </head>
 <body>
+    @if (isset($message) && $message != '')
+        <div class="alert alert-success">{{ $message }}</div>
+    @endif
+
     <div class="container" ng-app="app" ng-controller="controllerName">
         <h1>Please select how you would like to purchase your foreign currency</h1>
         <hr />
         <h3>Select your prefered currency option:</h3><br />
 
         <form action="/currency" method="post" name="currencyForm">
-            <select ng-model="selectedCurrency" ng-change="totalVal=''" ng-init="currencies={{ $currencies }}">
+            <select ng-model="selectedCurrency" ng-change="totalVal=''; totalForeignBuyingZar=''" ng-init="currencies={{ $currencies }}">
                 @foreach ($currencies as $currency)
                     <option value="{{ $currency->code }}">{{ $currency->description }} - {{ $currency->code }}</option>
                 @endforeach
@@ -33,13 +37,14 @@
             </div>
 
             <hr />
-            <span>Total value in <strong>ZAR</strong></span>
+            <span>Total amount payable in <strong>ZAR</strong></span>
             <input type="hidden" name="total_zar_value" id="total_zar_value" ng-model="totalVal" ng-value="totalVal" />
             <input type="hidden" name="total_foreign_buying_zar" id="total_foreign_buying_zar" ng-model="totalForeignBuyingZar" ng-value="totalForeignBuyingZar" />
+            <input type="hidden" name="foreign_currency_code" id="foreign_currency_code" ng-model="foreignCurrencyCode" ng-value="selectedCurrency" />
             <label ng-bind="totalVal"></label><br />
 
             <div ng-if="zarVal">
-                <span>Total value in </span>
+                <span>You will receive </span>
                 <label ng-bind="selectedCurrency"></label>
                 <label ng-bind="totalForeignBuyingZar"></label>
             </div>

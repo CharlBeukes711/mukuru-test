@@ -15,11 +15,17 @@
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*",
         "xethron/migrations-generator": "dev-l5",
-        "way/generators": "dev-feature/laravel-five-stable"
+        "way/generators": "dev-feature/laravel-five-stable",
+        "guzzlehttp/guzzle": "~4.0"
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "app/models/entities",
+            "app/models/repositories",
+            "app/services",
+            "app/services/facades",
+            "app/services/strategies"
         ],
         "psr-4": {
             "App\\": "app/"

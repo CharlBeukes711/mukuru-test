@@ -27,7 +27,7 @@ app.controller('controllerName', ['$scope', function ($scope) {
     function calculateValue(currencyType) {
         angular.forEach($scope.currencies, function(currency) {
             if ($scope.selectedCurrency == currency.code) {
-                // get the exchange rate and calculate value based on the amount type entered
+                // get the exchange rate and calculate value based on the currency type amount entered
                 switch (currencyType) {
                     case 'foreign':
                         totalValue = $scope.foreignCurrencyVal / currency.exchange_rate;
