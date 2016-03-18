@@ -11,19 +11,10 @@ class ExchangeRateComposite {
         $this->currencyRepo = $currencyRepo;
     }
 
-//    private function loadCurrencies() {
-//        $this->currencyCollection = $this->currencyRepo->getAll();
-//    }
-
+    /**
+     * Updates the exchanges rates retrieved from an API call
+     */
     public function updateExchangeRates() {
-//        $this->loadCurrencies();
-
-//        $currencyCodeArray = [];
-
-//        /** @var \App\Models\Entities\Currency $currency */
-//        foreach ($this->currencyCollection as $currency) {
-//            $currencyCodeArray[] = $currency->code;
-//        }
         $currency = new Currency();
         $currency->updateExchangeRate($this->currencyRepo->getAll());
     }
