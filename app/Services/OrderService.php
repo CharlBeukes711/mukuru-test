@@ -84,7 +84,7 @@ class OrderService {
     Surcharge Percentage: {$this->order->surcharge_percentage}%
     Surcharge Amount: R " . number_format($this->order->surcharge_amount, 2) . "
     Discount Percentage: {$this->order->discount_percentage}%
-    Discount Amount: {$this->order->discount_amount}
+    Discount Amount: R " . number_format($this->order->discount_amount, 2) . "
     Total Amount Paid: R " . number_format($this->order->total_amount, 2);
 
             $message->from('charlbeukes@gmail.com', 'Mukuru Foreign Currencies Test')
